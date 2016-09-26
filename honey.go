@@ -124,8 +124,8 @@ func ParseCommand(s string) (*Command, error) {
 			return nil, fmt.Errorf("Missing tag in command %q", s)
 		}
 
-		lastchar := args[len(args)-1:]
-		if lastchar == "=" { // auth plain base64 encoding
+		if len(args) <= 200 {
+			// auth plain base64 encoding
 			d, err := base64.StdEncoding.DecodeString(args)
 			if err == nil {
 				d = bytes.Replace(d, []byte("\x00"), []byte(" "), -1)
