@@ -98,7 +98,7 @@ func (sess *Session) RemoteIP() string {
 	return ip
 }
 func (sess *Session) Log(s string) {
-	log.Printf(s) // syslog
+	log.Print(s) // syslog
 	if !sess.server.IsQuiet() {
 		fmt.Printf("%s - %s\n", time.Now().Format(time.RFC3339), s) // console
 	}
