@@ -15,6 +15,8 @@ import (
 	"time"
 )
 
+var Version string
+
 type Server struct {
 	debug      bool
 	quiet      bool // don't write to console
@@ -289,6 +291,7 @@ openssl req -new -x509 -sha256 -key server.key -out server.pem -days 3650
 **/
 func main() {
 
+	fmt.Printf("Version: %s\n", Version)
 	syslogServerFlag := flag.String("server", "", "syslog remote server")
 	hostnameFlag := flag.String("hostname", "localhost", "hostname")
 	addressFlag := flag.String("addr", ":1993", "ipaddr:port")
