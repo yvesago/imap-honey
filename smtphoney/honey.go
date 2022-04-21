@@ -154,12 +154,16 @@ func ParseCommand(s string) (*Command, error) {
 	switch {
 	case strings.Contains(s, "EHLO"):
 		sp := strings.Split(s, " ")
-		command.Command = sp[0]
-		command.Arguments = sp[1]
+		command.Command = "EHLO"
+		if len(sp) > 1 {
+			command.Arguments = sp[1]
+		}
 	case strings.Contains(s, "HELO"):
 		sp := strings.Split(s, " ")
-		command.Command = sp[0]
-		command.Arguments = sp[1]
+		command.Command = "HELO"
+		if len(sp) > 1 {
+			command.Arguments = sp[1]
+		}
 	case strings.Contains(s, "DATA"):
 		command.Command = "DATA"
 	case matched:
