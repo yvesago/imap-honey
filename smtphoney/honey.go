@@ -172,12 +172,18 @@ func ParseCommand(s string) (*Command, error) {
 		command.Command = "QUIT"
 	case strings.Contains(s, "MAIL FROM"):
 		sp := strings.Split(s, ":")
-		command.Command = "MAIL"
-		command.Arguments = cleanMail(sp[1])
+		command.Command = "QUIT"
+		if len(sp) > 1 {
+			command.Command = "MAIL"
+			command.Arguments = cleanMail(sp[1])
+		}
 	case strings.Contains(s, "RCPT TO"):
 		sp := strings.Split(s, ":")
-		command.Command = "TO"
-		command.Arguments = cleanMail(sp[1])
+		command.Command = "QUIT"
+		if len(sp) > 1 {
+			command.Command = "TO"
+			command.Arguments = cleanMail(sp[1])
+		}
 	case strings.Contains(s, "AUTH LOGIN"):
 		command.Command = "AUTH"
 	case strings.Contains(s, "STARTTLS"):
